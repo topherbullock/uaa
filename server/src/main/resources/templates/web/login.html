@@ -34,10 +34,15 @@
             </div>
             <div th:each="oauthLink : ${oauthLinks}" >
                 <div>
-                    <a href="" th:href="${oauthLink.key}" th:text="${oauthLink.value}" class="saml-login-link">Use your corporate credentials</a>
+                    <a target="_new" href="" th:href="${oauthLink.key}" th:text="${oauthLink.value}" class="saml-login-link">Use your corporate credentials</a>
                 </div>
             </div>
         </div>
+        <th:block th:if="${bannerImageUrl}">
+            <a th:href="${bannerImageTargetUrl}">
+                <img th:src="${bannerImageUrl}">
+            </a>
+        </th:block>
         <th:block th:if="${linkCreateAccountShow}">
         <span class="left">
             <a th:unless="${#strings.isEmpty(links['createAccountLink'])}" href="/create_account" th:href="@{${links['createAccountLink']}}" class="link-lowlight">Create account</a>

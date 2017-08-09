@@ -118,6 +118,8 @@ public class LoginInfoEndpoint {
     public static final String FORGOT_PASSWORD_LINK = "forgotPasswordLink";
     public static final String LINK_CREATE_ACCOUNT_SHOW = "linkCreateAccountShow";
     public static final String FIELD_USERNAME_SHOW = "fieldUsernameShow";
+    public static final String BANNER_IMAGE_URL = "bannerImageUrl";
+    public static final String BANNER_IMAGE_TARGET_URL = "bannerImageTargetUrl";
 
     public static final List<String> UI_ONLY_ATTRIBUTES =
         Collections.unmodifiableList(
@@ -288,6 +290,9 @@ public class LoginInfoEndpoint {
 
     private String login(Model model, Principal principal, List<String> excludedPrompts, boolean jsonResponse, HttpServletRequest request) {
         if(principal instanceof UaaAuthentication && ((UaaAuthentication)principal).isAuthenticated()) { return "redirect:/home"; }
+
+        model.addAttribute(BANNER_IMAGE_TARGET_URL, "https://www.google.com");
+        model.addAttribute(BANNER_IMAGE_URL, "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png");
 
         HttpSession session = request != null ? request.getSession(false) : null;
         List<String> allowedIdps = null;
